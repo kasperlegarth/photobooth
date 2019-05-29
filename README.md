@@ -1,2 +1,2 @@
 # photobooth
-A fun little web based photobooth software
+A simple web based photoshop application

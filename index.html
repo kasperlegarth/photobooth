@@ -8,6 +8,15 @@
     <link rel="stylesheet" href="assets/css/main.min.css">
 </head>
 <body>
-    <h1>Smile!</h1>
+    <main id="camera">
+        <div class="counter hide" id="countdown">3</div>
+        <canvas id="sensor"></canvas>
+        <video id="preview" autoplay playsinline muted></video>
+        <img src="//:0" class="hide" alt="" id="result">
+        <button id="trigger">Snap!</button>
+    </main>
+
+    <!-- https://cdnjs.cloudflare.com/ajax/libs/jquery-compat/3.0.0-alpha1/jquery.min.js -->
+    <script src="assets/js/app.js"></script>
 </body>
 </html>
