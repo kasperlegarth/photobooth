@@ -41,13 +41,28 @@ function takePicture() {
     sensor.width = preview.videoWidth;
     sensor.height = preview.videoHeight;
     sensor.getContext('2d').drawImage(preview, 0, 0);
+    let imageData = sensor.toDataURL();
     result.src = sensor.toDataURL("image/webp");
     sensor.classList.add('hide');
     result.classList.remove('hide');
 
+    saveAsImage(imageData);
+
     setTimeout(function() {
         location.reload();
     }, 5000);
+}
+
+function saveAsImage(imageData) {
+    $.ajax({
+        type: 'POST',
+        url: 'assets/ajaxhandlers/save.php',
+        data: {
+            image: imageData
+        }
+    }).done(function(o) {
+        console.log(o);
+    });
 }
 
 trigger.onclick = function() {
