@@ -38,9 +38,9 @@ function startCoundown(timeLeft) {
 }
 
 function takePicture() {
-    sensor.width = 950;
-    sensor.height = 1265;
-    sensor.getContext('2d').drawImage(preview, 0, 0, 950, 1265);
+    sensor.width = 1280;
+    sensor.height = 960;
+    sensor.getContext('2d').drawImage(preview, 0, 0, 1280, 960);
     let imageData = sensor.toDataURL();
     result.src = sensor.toDataURL("image/webp");
     sensor.classList.add('hide');
