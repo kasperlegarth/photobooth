@@ -9,10 +9,10 @@ const   preview = document.getElementById('preview'),
         result = document.getElementById('result'),
         sensor = document.getElementById('sensor'),
         trigger = document.getElementById('trigger'),
-        countdown = document.getElementById('countdown');
+        countdown = document.getElementById('countdown'),
+        container = document.getElementById('preview-container');
 
 function startCamera(constrains) {
-
     navigator.mediaDevices.getUserMedia(constrains).then(function(stream) {
         track = stream.getTracks()[0];
         preview.srcObject = stream;
@@ -38,21 +38,57 @@ function startCoundown(timeLeft) {
 }
 
 function takePicture() {
-    sensor.width = preview.videoWidth;
-    sensor.height = preview.videoHeight;
-    sensor.getContext('2d').drawImage(preview, 0, 0);
+    sensor.width = 1280;
+    sensor.height = 960;
+    sensor.getContext('2d').drawImage(preview, 0, 0, 1280, 960);
+    let imageData = sensor.toDataURL();
     result.src = sensor.toDataURL("image/webp");
     sensor.classList.add('hide');
     result.classList.remove('hide');
+
+    saveAsImage(imageData);
 
     setTimeout(function() {
         location.reload();
     }, 5000);
 }
 
-trigger.onclick = function() {
-    trigger.classList.add('hide');
-    startCoundown(3);    
+function saveAsImage(imageData) {
+    $.ajax({
+        type: 'POST',
+        url: 'assets/ajaxhandlers/save.php',
+        data: {
+            image: imageData
+        }
+    }).done(function(o) {
+        console.log(o);
+    });
 }
 
-window.addEventListener("load", startCamera(constrains), false);
+function startPreview() {
+    $.ajax({
+        type: 'POST',
+        url: 'assets/ajaxhandlers/getImages.php',
+    }).done(function(o) {
+        let images = JSON.parse(o);
+        $.each(images, function(k, v) {
+            let fullImagePath = v;
+            let neededImagePath = fullImagePath.substring(fullImagePath.indexOf('assets'));
+            $(container).append('<img src="'+ neededImagePath +'">');
+        })
+    });
+}
+
+ if(trigger) {
+
+    trigger.onclick = function() {
+        trigger.classList.add('hide');
+        startCoundown(3);    
+    }
+
+    window.addEventListener("load", startCamera(constrains), false);
+ }
+
+if(container) {
+    window.addEventListener("load", startPreview(), false);
+}
