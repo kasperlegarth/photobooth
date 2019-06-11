@@ -1,6 +1,6 @@
 <?php
     define('UPLOAD_DIR', $_SERVER['DOCUMENT_ROOT'] . '/assets/pictures/');
-    $pictureTime = date('d-M-H-i-s', time());
+    $pictureTime = date('j-M-H-i-s', time());
 
     $img = $_POST['image'];
     $img = str_replace('data:image/png;base64,','', $img);

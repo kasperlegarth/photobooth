@@ -71,6 +71,13 @@ function startPreview() {
         url: 'assets/ajaxhandlers/getImages.php',
     }).done(function(o) {
         let images = JSON.parse(o);
+
+        if(images.length < 4) {
+            container.classList.add('few-images');
+        } else {
+            container.classList.remove('few-images');
+        }
+
         $.each(images, function(k, v) {
             let fullImagePath = v;
             let neededImagePath = fullImagePath.substring(fullImagePath.indexOf('assets'));
