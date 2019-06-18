@@ -273,7 +273,7 @@ function addNewImageToBoard(nextIndex, lastIndex) {
         });
 
         if(nextIndex < lastIndex) {
-            addNewImageToTheBoard(nextIndex + 1, lastIndex);
+            addNewImageToBoard(nextIndex + 1, lastIndex);
         } else {
             updatePaused = false;
         }
