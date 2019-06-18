@@ -6,29 +6,70 @@
     <title>photobooth</title>
 
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-    <link rel="apple-touch-startup-image" href="splash.png">
+    <link rel="apple-touch-startup-image" href="/assets/images/spash.png">
 
-
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/assets/images/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="theme-color" content="#ffffff">
 
-    <link rel="stylesheet" href="assets/css/main.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/main.min.css">
 </head>
 <body>
-    <main id="camera">
-        <div class="counter hide" id="countdown">3</div>
-        <canvas width="1920" height="1080" id="sensor"></canvas>
-        <video id="preview" autoplay playsinline muted></video>
-        <img src="//:0" class="hide" alt="" id="result">
-        <button id="trigger">Snap!</button>
-    </main>
+    <section id="welcome" class="welcome-screen">
+        <div class="background-icons">
+            <div class="icon-column">
+                <img src="/assets/images/icons/sun.svg">
+                <img src="/assets/images/icons/flamingo.svg">
+                <img src="/assets/images/icons/flower.svg">
+                <img src="/assets/images/icons/coconut.svg">
+                <img src="/assets/images/icons/palm-tree.svg">
+            </div>
+            <div class="icon-column">
+                <img src="/assets/images/icons/flower.svg">
+                <img src="/assets/images/icons/sun.svg">
+                <img src="/assets/images/icons/palm-tree.svg">
+                <img src="/assets/images/icons/flamingo.svg">
+                <img src="/assets/images/icons/coconut.svg">
+            </div>
+            <div class="icon-column">
+                <img src="/assets/images/icons/coconut.svg">
+                <img src="/assets/images/icons/palm-tree.svg">    
+                <img src="/assets/images/icons/flamingo.svg">                               
+                <img src="/assets/images/icons/flower.svg">
+                <img src="/assets/images/icons/sun.svg">
+            </div>
+            <div class="icon-column">
+                <img src="/assets/images/icons/flamingo.svg">
+                <img src="/assets/images/icons/coconut.svg">
+                <img src="/assets/images/icons/sun.svg">
+                <img src="/assets/images/icons/palm-tree.svg">
+                <img src="/assets/images/icons/flower.svg">              
+            </div>
+            <div class="icon-column">
+                <img src="/assets/images/icons/palm-tree.svg">
+                <img src="/assets/images/icons/flower.svg">
+                <img src="/assets/images/icons/coconut.svg">
+                <img src="/assets/images/icons/sun.svg">                
+                <img src="/assets/images/icons/flamingo.svg">
+            </div>
+        </div>
+        <h1>aloha!</h1>
+        <h1>Combines sommerfest 2019</h1>
+        <h1>tryk for at starte</h1>
+        <div id="start-camera" class="start-button"></div>
+    </section>
+    <section id="camera" class="camera-ui">
+        <canvas id="canvas"></canvas>
+        <video id="videoContainer" autoplay playsinline muted></video>
 
+        <div id="trigger" class="trigger-button"></div>
+    </section>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-compat/3.0.0-alpha1/jquery.min.js"></script>
     <script src="assets/js/app.js"></script>
 </body>

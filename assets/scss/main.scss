@@ -1,3 +1,11 @@
+$darkPurple: #e39add;
+$lightPurple: #e8aee4;
+$darkYellow: #e4c362;
+$lightYellow: #e9d080;
+$darkGreen: #a7d273;
+$lightGreen: #b9db8f;
+$red: #e05550;
+
 html,
 body {
     margin: 0;
@@ -7,9 +15,33 @@ body {
 }
 
 body {
-    font-family: sans-serif;
-    background-color: #f1f2f3;
+    font-family: 'Lobster', cursive;
 }
 
 @import "_camera.scss";
 @import "_preview.scss";
+
+.transition-element {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $darkGreen;
+    transform: translate(0, -100%);
+    animation: transitionEffect 1.5s ease-in-out;
+    z-index: 9999;
+}
+
+@keyframes transitionEffect {
+    0% {
+        transform: translate(0, -100%);
+    }
+    45%,
+    55% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(0, 100%);
+    }
+}
