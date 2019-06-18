@@ -1,10 +1,12 @@
 /** Start global variables used by the camera ui **/
 const   PICTUREWIDTH = 1280,
         PICTUREHEIGHT = 960,
-        TIMEAFTERPICTURETAKEN = 5000;
+        TIMEAFTERPICTURETAKEN = 5000,
+        TIMEBEFORERESET = 60000;
 
 let     gotCamera = false,
-        pictureInprogress = false;
+        pictureInprogress = false,
+        idleTime;
 /** End global variables used by the camera ui **/
 
 
@@ -337,6 +339,7 @@ function runCountdown(element, from, to) {
     }
     
 }
+
 /**
  * Draws an image on the canvas from the video stream, stores it as a string. Calls the save function.
  */
@@ -391,6 +394,7 @@ function initCameraInterface() {
         runCountdown($trigger, 3, 0);
     });
 
+    idleTime = setTimeout(resetInterface, TIMEBEFORERESET);
     makeScreenTransition(transiteTo);
 }
 
