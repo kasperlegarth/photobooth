@@ -1,8 +1,21 @@
 /** Start global variables used by the camera ui **/
 const   PICTUREWIDTH = 1280,
         PICTUREHEIGHT = 960,
-        TIMEAFTERPICTURETAKEN = 5000,
-        TIMEBEFORERESET = 60000;
+        TIMEAFTERPICTURETAKEN = 7500,
+        TIMEBEFORERESET = 60000,
+        FEEDBACKMESSAGES = [
+            'Floooot! &#x1F60D; &#x1F60D; &#x1F60D;',
+            'I ligner en million! &#x1F929;',
+            'Er du model? &#x1F483; &#x1F3B5;',
+            'Yeeeees, very nice!',
+            'Fedt fedt fedt fedt!',
+            'Dårlig hårdag?',
+            'Hej Morten og Peter.',
+            'Så er Grev Ingolf også kommet til fest. &#x1F9D0; &#x1F600;',
+            'Skal du have det tøj på til festen?',
+            'Du ligner noget katten har slæbt med ind… &#x1F639;'
+        ];
+        
 
 let     gotCamera = false,
         pictureInprogress = false,
@@ -112,7 +125,7 @@ function makeScreenTransition(to) {
 }
 
 /**
- * return a random function from an array
+ * return a random value from an array
  * 
  * @param {array} array - array to return value from
  */
@@ -130,11 +143,13 @@ function resetInterface() {
     const transiteTo = $('#welcome');
     const $canvas = document.getElementById("canvas");
     const $trigger = $('#trigger');
+    const $responseMsg = $('.picture-response');
 
     makeScreenTransition(transiteTo);
 
     setTimeout(function() {
         $trigger.show();
+        $responseMsg.remove();
         $canvas.getContext('2d').clearRect(0, 0, $canvas.width, $canvas.height);
         $canvas.width = 0;
         $canvas.height = 0;
@@ -344,11 +359,13 @@ function runCountdown(element, from, to) {
  * Draws an image on the canvas from the video stream, stores it as a string. Calls the save function.
  */
 function takePicture() {
+    clearTimeout(idleTime);
     pictureInprogress = true;
     const videoContainer = document.getElementById("videoContainer");
     const $canvas = document.getElementById("canvas");
 
     videoContainer.pause();
+    showPictureResponse();
 
     $canvas.width = PICTUREWIDTH;
     $canvas.height = PICTUREHEIGHT;
@@ -393,7 +410,6 @@ function initCameraInterface() {
     $trigger.click(function() {
         runCountdown($trigger, 3, 0);
     });
-
     idleTime = setTimeout(resetInterface, TIMEBEFORERESET);
     makeScreenTransition(transiteTo);
 }
@@ -408,6 +424,24 @@ function cameraSuccess(stream) {
     videoContainer.srcObject = stream;
     
     gotCamera = true;
+}
+
+/**
+ * Show a random message on the screen
+ */
+function showPictureResponse() {
+    const screen = $('#camera');
+
+    let infoElement = $('<span />', {
+        text: 'Billedet vises på skærmen straks'
+    });
+
+    let response = $('<div />', {
+        class: 'picture-response',
+        html: getRandomFromArray(FEEDBACKMESSAGES)
+    }).append(infoElement);
+
+    screen.append(response);
 }
 /** End camera functions **/
 
