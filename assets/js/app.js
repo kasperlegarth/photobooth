@@ -7,12 +7,12 @@ const   PICTUREWIDTH = 1280,
             'Floooot! &#x1F60D; &#x1F60D; &#x1F60D;',
             'I ligner en million! &#x1F929;',
             'Er du model? &#x1F483; &#x1F3B5;',
-            'Yeeeees, very nice!',
-            'Fedt fedt fedt fedt!',
-            'Dårlig hårdag?',
-            'Hej Morten og Peter.',
+            'Yeeeees, very nice! &#x270C;',
+            'Fedt fedt fedt fedt! &#x1F389;',
+            'Dårlig hårdag? &#x1F487;',
+            'Hej Morten og Peter. &#x267F;',
             'Så er Grev Ingolf også kommet til fest. &#x1F9D0; &#x1F600;',
-            'Skal du have det tøj på til festen?',
+            'Skal du have det tøj på til festen? &#x1F914;',
             'Du ligner noget katten har slæbt med ind… &#x1F639;'
         ];
         
